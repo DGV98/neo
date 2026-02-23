@@ -13,11 +13,9 @@ vim.schedule(function()
 end)
 vim.o.breakindent = true
 vim.o.undofile = true
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = "yes"
 vim.o.updatetime = 250
 vim.o.cursorline = true
-vim.o.inccommand = 'split'
+vim.o.inccommand = "split"
 vim.o.scrolloff = 10
 vim.o.confirm = true
-
-
