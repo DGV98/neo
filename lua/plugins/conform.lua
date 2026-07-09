@@ -16,6 +16,9 @@ return {
 	},
 	config = function(_, opts)
 		require("conform").setup(opts)
+		vim.keymap.set("n", "<leader>gf", function()
+			require("conform").format({ bufnr = 0 })
+		end, { desc = "[G]o [F]ormat buffer" })
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			pattern = "*",
 			callback = function(args)

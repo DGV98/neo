@@ -10,21 +10,28 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 		opts = {
-			auto_install = true,
+			ensure_installed = {
+				"lua_ls",
+				"pyright",
+				"eslint",
+				"hyprls",
+				"qmlls",
+				"sqls",
+			},
+			-- stylua is a mason-installed formatter, but nvim-lspconfig ships an
+			-- `lsp/stylua.lua`, so automatic_enable would start it as a server and
+			-- fight conform over formatting.
+			automatic_enable = { exclude = { "stylua" } },
 		},
 	},
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = { "saghen/blink.cmp" },
-		opts = {
-			servers = {
-				lua_ls = {},
-			},
-		},
-		config = function(_, opts)
-			local lspconfig = require("lspconfig")
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+		config = function()
+			-- Merged into every server that mason-lspconfig enables.
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
+			})
 		end,
 	},
 }
