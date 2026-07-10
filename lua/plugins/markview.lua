@@ -3,7 +3,11 @@ return {
   "OXY2DEV/markview.nvim",
   lazy = false,
   opts = {
-    preview = {enable = false}
+    preview = {
+      enable = false,
+      -- Markview's defaults plus mdx; setting this replaces the default list.
+      filetypes = { "markdown", "quarto", "rmd", "typst", "asciidoc", "mdx" },
+    }
   },
   config = function(_, opts)
     vim.api.nvim_set_keymap("n", "<leader>m", "<CMD>Markview<CR>", { desc = "Toggles `markview` previews globally." });
