@@ -70,6 +70,10 @@ return {
 					ts.tsdk = tsdk
 				end,
 			})
+
+			-- zls (Zig) is installed on PATH (~/.local/bin), pinned to match the
+			-- system zig 0.16.0, rather than through mason — so enable it here.
+			vim.lsp.enable("zls")
 		end,
 	},
 }
